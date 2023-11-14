@@ -1,6 +1,17 @@
 import subprocess
 import argparse
 
+
+def shell(command):
+    try:
+        output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+    except Exception as e:
+        output = str(e.output)
+    finished = output.split('\n')
+    for line in finished:
+        print(line)
+    return
+
 parser = argparse.ArgumentParser()
 parser.add_argument("badhash", help="The hash of the bad commit")
 parser.add_argument("goodhash", help="The hash of the good commit")
@@ -8,10 +19,8 @@ parser.add_argument("goodhash", help="The hash of the good commit")
 badhash = parser.parse_args().badhash
 goodhash = parser.parse_args().goodhash
 
-output_1 = subprocess.check_output(f'git bisect start {badhash} {goodhash}', shell=True)
-output_2 = subprocess.check_output('git bisect run manage.py test', shell=True)
-output_3 = subprocess.check_output('git bisect reset', shell=True)
+output_1 = shell(f'git bisect start {badhash} {goodhash}')
+output_2 = shell('git bisect run manage.py test')
+output_3 = shell('git bisect reset')
 
-print(output_1)
-print(output_2)
-print(output_3)
+
