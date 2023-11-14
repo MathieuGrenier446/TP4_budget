@@ -11,9 +11,9 @@ import subprocess
 badhash = "01c7fa9ff06348f539599aad591836c129a3ab13" 
 goodhash = "e4cfc6f77ebbe2e23550ddab682316ab4ce1c03c"
 
-output_1 = subprocess.run(f"git bisect start {badhash} {goodhash}", shell=True, check=False, capture_output=True).stdout
-output_2 = subprocess.run("git bisect run manage.py test", shell=True, check=False, capture_output=True).stdout
-output_3 = subprocess.run("git bisect reset", shell=True, check=False, capture_output=True).stdout
+output_1 = subprocess.run(f"git bisect start {badhash} {goodhash}", shell=True, check=False, capture_output=True).stderr
+output_2 = subprocess.run("git bisect run manage.py test", shell=True, check=False, capture_output=True).stderr
+output_3 = subprocess.run("git bisect reset", shell=True, check=False, capture_output=True).stderr
 
 print(output_1)
 print(output_2)
