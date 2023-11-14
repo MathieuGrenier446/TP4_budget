@@ -12,4 +12,4 @@ jobs:
             - name: Install packages
               run: pip install -r "requirements.txt"
             - name: Run tests
-              run: python myscript.py
+              run: python myscript.py ${{ github.head_ref }} "e4cfc6f77ebbe2e23550ddab682316ab4ce1c03c"
