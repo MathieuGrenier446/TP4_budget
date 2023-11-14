@@ -12,4 +12,8 @@ jobs:
             - name: Install packages
               run: pip install -r "requirements.txt"
             - name: Run tests
-              run: python myscript.py 
+              run: |
+                git bisect start
+                git bisect bad 01c7fa9ff06348f539599aad591836c129a3ab13
+                git bisect good e4cfc6f77ebbe2e23550ddab682316ab4ce1c03c
+                git bisect run python myscript.py
