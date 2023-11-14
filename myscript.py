@@ -11,3 +11,4 @@ goodhash = parser.parse_args().goodhash
 os.system(f'git bisect start {badhash} {goodhash}')
 os.system('git bisect run manage.py test')
 os.system('git bisect reset')
+print("HI")
