@@ -1,13 +1,24 @@
-import os
+# import os
+
+
+# os.system(f'git bisect start {badhash} {goodhash}')
+# os.system('git bisect run manage.py test')
+# os.system('git bisect reset')
+
+import subprocess
+
 
 badhash = "01c7fa9ff06348f539599aad591836c129a3ab13" 
 goodhash = "e4cfc6f77ebbe2e23550ddab682316ab4ce1c03c"
 
-os.system(f'git bisect start {badhash} {goodhash}')
-os.system('git bisect run manage.py test')
-os.system('git bisect reset')
+output_1 = subprocess.check_output(f"git bisect start {badhash} {goodhash}", shell=True, check=False)
+output_2 = subprocess.check_output("git bisect run manage.py test", shell=True, check=False)
+output_3 = subprocess.check_output("git bisect reset", shell=True, check=False)
 
-# import subprocess
+print(output_1)
+print(output_2)
+print(output_3)
+
 # import argparse
 
 # parser = argparse.ArgumentParser()
@@ -17,10 +28,3 @@ os.system('git bisect reset')
 # badhash = parser.parse_args().badhash
 # goodhash = parser.parse_args().goodhash
 
-# output_1 = subprocess.check_output(f"git bisect start {badhash} {goodhash}", shell=True)
-# output_2 = subprocess.check_output("git bisect run manage.py test", shell=True)
-# output_3 = subprocess.check_output("git bisect reset", shell=True)
-
-# print(output_1)
-# print(output_2)
-# print(output_3)
